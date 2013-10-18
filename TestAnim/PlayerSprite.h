@@ -55,5 +55,6 @@ public:
     void run();
     void hurt();
     void death(CCObject* obj, SEL_CallFuncN selector);
+    void showHp();
 };
 #endif /* defined(__TestAnim__PlayerSprite__) */

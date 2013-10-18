@@ -8,6 +8,8 @@
 
 #include "PlayerSprite.h"
 #include "AnimateHelper.h"
+#include "HPSprite.h"
+
 PlayerSprite::PlayerSprite(){
     prefix = "body_1";
     direction = EPathLeft;
@@ -21,7 +23,10 @@ bool PlayerSprite::init(){
     if (!CCSprite::init()){
         return false;
     }
+//   CCLayerColor* colorLayerBg =  CCLayerColor::create(ccc4(255,0,0,255));
+//    this->addChild(colorLayerBg,-1);
     loadResource();
+    showHp();
     return true;
 }
 
@@ -29,7 +34,7 @@ void PlayerSprite::loadResource(){
     
     CCString* plistName = CCString::createWithFormat("gamesrc/body/%s.plist",prefix.c_str());
     CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(plistName->getCString());
-    this->setContentSize(CCSize(50,50));
+    this->setContentSize(CCSize(50,80));
 }
 
 CCArray *PlayerSprite::currentFrames(){
@@ -224,4 +229,14 @@ void PlayerSprite::run(){
     CCAnimate *animate = AnimateHelper::actionWith(frames, interval);
     CCRepeatForever *repeat = CCRepeatForever::create(animate);
     runAction(repeat);
+}
+
+void PlayerSprite::showHp(){
+   
+        HPSprite *sprite = HPSprite::create(100, 100);
+        sprite->setAnchorPoint(CCPointZero);
+        sprite->setPosition(ccp(140,220));
+//        sprite->setTag(kHpSpriteTag);
+        addChild(sprite,6);
+  
 }

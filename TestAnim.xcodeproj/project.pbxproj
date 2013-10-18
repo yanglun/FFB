@@ -287,6 +287,8 @@
 		F4684F2117E0A03F00CD9F1E /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4684F1F17E0A03F00CD9F1E /* Utils.cpp */; };
 		F4944BC417F16DE700F2B712 /* MainGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4944BC217F16DE700F2B712 /* MainGame.cpp */; };
 		F4944BD017F17F5300F2B712 /* gamesrc in Resources */ = {isa = PBXBuildFile; fileRef = F4944BCF17F17F5300F2B712 /* gamesrc */; };
+		F4E5F6E9181121DA00206ABE /* GameOverScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4E5F6E8181121DA00206ABE /* GameOverScene.cpp */; };
+		F4E5F6EE181131E200206ABE /* HPSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4E5F6ED181131E200206ABE /* HPSprite.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -891,6 +893,10 @@
 		F4944BC217F16DE700F2B712 /* MainGame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainGame.cpp; sourceTree = "<group>"; };
 		F4944BC317F16DE700F2B712 /* MainGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainGame.h; sourceTree = "<group>"; };
 		F4944BCF17F17F5300F2B712 /* gamesrc */ = {isa = PBXFileReference; lastKnownFileType = folder; name = gamesrc; path = Resources/gamesrc; sourceTree = "<group>"; };
+		F4E5F6E7181121DA00206ABE /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameOverScene.h; path = Classes/GameOverScene.h; sourceTree = "<group>"; };
+		F4E5F6E8181121DA00206ABE /* GameOverScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameOverScene.cpp; path = Classes/GameOverScene.cpp; sourceTree = "<group>"; };
+		F4E5F6EC181131E200206ABE /* HPSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPSprite.h; path = Classes/HPSprite.h; sourceTree = "<group>"; };
+		F4E5F6ED181131E200206ABE /* HPSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HPSprite.cpp; path = Classes/HPSprite.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2114,6 +2120,9 @@
 		F4684F0617E0993100CD9F1E /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				F4E5F6EA181130D900206ABE /* component */,
+				F4E5F6E7181121DA00206ABE /* GameOverScene.h */,
+				F4E5F6E8181121DA00206ABE /* GameOverScene.cpp */,
 				F4684F0717E0993100CD9F1E /* AppDelegate.h */,
 				F4684F0817E0993100CD9F1E /* AppDelegate.cpp */,
 				F4684F0A17E0993100CD9F1E /* HelloWorldScene.h */,
@@ -2128,6 +2137,15 @@
 				F45D1D7917F18C5600E9FC33 /* PlayerSprite.h */,
 			);
 			name = Classes;
+			sourceTree = "<group>";
+		};
+		F4E5F6EA181130D900206ABE /* component */ = {
+			isa = PBXGroup;
+			children = (
+				F4E5F6EC181131E200206ABE /* HPSprite.h */,
+				F4E5F6ED181131E200206ABE /* HPSprite.cpp */,
+			);
+			name = component;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2233,6 +2251,7 @@
 				F4684BCC17E0992C00CD9F1E /* CCConfiguration.cpp in Sources */,
 				F4684BCF17E0992C00CD9F1E /* CCDirector.cpp in Sources */,
 				F4684BD217E0992C00CD9F1E /* ccFPSImages.c in Sources */,
+				F4E5F6E9181121DA00206ABE /* GameOverScene.cpp in Sources */,
 				F4684BD517E0992C00CD9F1E /* CCScheduler.cpp in Sources */,
 				F4684BD917E0992C00CD9F1E /* CCAffineTransform.cpp in Sources */,
 				F4684BDC17E0992C00CD9F1E /* CCArray.cpp in Sources */,
@@ -2368,6 +2387,7 @@
 				F4684DCA17E0992F00CD9F1E /* CCLabelTTFLoader.cpp in Sources */,
 				F4684DCD17E0992F00CD9F1E /* CCLayerColorLoader.cpp in Sources */,
 				F4684DD017E0992F00CD9F1E /* CCLayerGradientLoader.cpp in Sources */,
+				F4E5F6EE181131E200206ABE /* HPSprite.cpp in Sources */,
 				F4684DD317E0992F00CD9F1E /* CCLayerLoader.cpp in Sources */,
 				F4684DD617E0992F00CD9F1E /* CCMenuItemImageLoader.cpp in Sources */,
 				F4684DD917E0992F00CD9F1E /* CCMenuItemLoader.cpp in Sources */,

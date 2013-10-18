@@ -8,6 +8,7 @@
 
 #include "MainGame.h"
 #include "PlayerSprite.h"
+#include "GameOverScene.h"
 
 MainGame::MainGame(){
     _targets = new CCArray;
@@ -29,16 +30,16 @@ bool MainGame::init(){
 
 void MainGame::onEnter(){
     CCLayer::onEnter();
-    CCLog("aaa1");
+    CCRepeat* layerFlashAction = CCRepeat::create(CCSequence::create(CCFadeOut::create(1),CCFadeIn::create(1),NULL),2) ;
+    this->runAction(layerFlashAction);
     CCSprite *player = CCSprite::create("gamesrc/Player.png");
     CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
     CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
     player->setPosition(ccp(origin.x + player->getContentSize().width/2,
                             origin.y + visibleSize.height/2) );
     this->addChild(player);
-    
     registerWithTouchDispatcher();
-    this->schedule( schedule_selector(MainGame::gameLogic), 1.0 );
+    this->schedule( schedule_selector(MainGame::gameLogic), 3.0 );
     this->schedule( schedule_selector(MainGame::updateGame) );
 }
 
@@ -63,10 +64,8 @@ void MainGame::addTarget()
     PlayerSprite* target = PlayerSprite::create();
 //    target->setColor(ccc3(50, 50, 50));
     CCSize size =  target->getContentSize();
-    CCLog("size width:%f",size.width);
-    CCLog("size height:%f",size.height);
+
     target->run();
-    
 	CCSize winSize = CCDirector::sharedDirector()->getVisibleSize();
 	float minY = target->getContentSize().height/2;
 	float maxY = winSize.height -  target->getContentSize().height/2;
@@ -170,15 +169,14 @@ void MainGame::spriteMoveFinished(CCNode* sender)
         _targets->removeObject(sprite);
         sprite->removeFromParent();
         
-        //		GameOverScene *gameOverScene = GameOverScene::create();
-        //		gameOverScene->getLayer()->getLabel()->setString("You Lose :[");
-        //		CCDirector::sharedDirector()->replaceScene(gameOverScene);
-        
 	}
 	else if (sprite->getTag() == 2) // projectile
 	{
         _projectiles->removeObject(sprite);
-        sprite->removeFromParent();
+//        sprite->removeFromParent();
+//        GameOverScene *gameOverScene = GameOverScene::create();
+//       	gameOverScene->getLayer()->getLabel()->setString("You Lose :[");
+//       	CCDirector::sharedDirector()->replaceScene(gameOverScene);
 	}
 }
 
@@ -202,14 +200,17 @@ void MainGame::updateGame(float dt)
 		CCArray* targetsToDelete =new CCArray;
         
 		// for (jt = _targets->begin(); jt != _targets->end(); jt++)
+  
         CCARRAY_FOREACH(_targets, jt)
 		{
 			PlayerSprite *target = dynamic_cast<PlayerSprite*>(jt);
+            CCLog("target->getContentSize().width:%f",target->getContentSize().width);
+            CCLog("target->getContentSize().height:%f",target->getContentSize().height);
 			CCRect targetRect = CCRectMake(
                                            target->getPosition().x ,
                                            target->getPosition().y ,
                                            target->getContentSize().width,
-                                           target->getContentSize().height);
+                                           target->getContentSize().height - 180);
             
 			// if (CCRect::CCRectIntersectsRect(projectileRect, targetRect))
             if (projectileRect.intersectsRect(targetRect))
@@ -231,12 +232,12 @@ void MainGame::updateGame(float dt)
 
             
 			_projectilesDestroyed++;
-			if (_projectilesDestroyed >= 5)
+			if (_projectilesDestroyed >= 15)
 			{
 
-//				GameOverScene *gameOverScene = GameOverScene::create();
-//				gameOverScene->getLayer()->getLabel()->setString("You Win!");
-//				CCDirector::sharedDirector()->replaceScene(gameOverScene);
+				GameOverScene *gameOverScene = GameOverScene::create();
+				gameOverScene->getLayer()->getLabel()->setString("You Win!");
+				CCDirector::sharedDirector()->replaceScene(gameOverScene);
 			}
 		}
         
