@@ -29,6 +29,7 @@ bool MainGame::init(){
 
 void MainGame::onEnter(){
     CCLayer::onEnter();
+    CCLog("aaa1");
     CCSprite *player = CCSprite::create("gamesrc/Player.png");
     CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
     CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
